@@ -1,0 +1,4 @@
+gsm						T_PTROBJ
+gsm_byte *					T_PV
+gsm_signal *					T_PV
+int *						T_PV
