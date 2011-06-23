@@ -45,7 +45,7 @@ our @EXPORT = qw(
 	GSM_PATCHLEVEL
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.03';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -102,19 +102,19 @@ sub option {
 
 sub encode {
     my $self    = shift;
-    my $pcmData = shift;
-    $pcmData .= 0x00 x (320 - length($pcmData));
-    my $gsmData = 0x00 x 33;
-    gsm_encode(&$self, $pcmData, $gsmData);
+    my $pcmData = shift || '';
+    $pcmData .= 0x00 x (640 - length($pcmData));
+    my $gsmData = 0x00 x 65;
+    gsm_encode2(&$self, $pcmData, $gsmData);
     return $gsmData;
 }
 
 sub decode {
     my $self    = shift;
-    my $gsmData = shift;
-    $gsmData .= 0x00 x (33 - length($gsmData));
-    my $pcmData = 0x00 x 320;
-    gsm_decode(&$self, $gsmData, $pcmData);
+    my $gsmData = shift || '';
+    $gsmData .= 0x00 x (65 - length($gsmData));
+    my $pcmData = 0x00 x 640;
+    gsm_decode2(&$self, $gsmData, $pcmData);
     return $pcmData;
 }
 
