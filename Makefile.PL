@@ -6,6 +6,10 @@ WriteMakefile(
     NAME              => 'Audio::GSM',
     VERSION_FROM      => 'lib/Audio/GSM.pm', # finds $VERSION
     PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    BUILD_REQUIRES     => {
+        Test::Simple        => 0.96,
+        ExtUtils::MakeMaker => 6.63,
+    },
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Audio/GSM.pm', # retrieve abstract from module
        AUTHOR         => 'Alexander Frolov <froller@froller.net>') : ()),

@@ -45,7 +45,7 @@ our @EXPORT = qw(
 	GSM_PATCHLEVEL
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -157,11 +157,10 @@ B<$gsm-E<gt>encode(PCMDATA)>
 
 =over
 
-Encodes raw PCM data and returns GSM frame. PCMDATA is 320 bytes length
+Encodes raw PCM data and returns GSM frames. PCMDATA is 640 bytes length
 portion of 16-bit mono PCM data.
 
-Return value is 32 or 33 bytes length GSM frame. Short (32 bytes) frames
-are null-padded. See gsm(3).
+Return value is a pair of 32 and 33 bytes length GSM frames. See gsm(3).
 
 =back
 
@@ -169,9 +168,10 @@ B<$gsm-E<gt>decode(GSMDATA)>
 
 =over
 
-Decodes GSM frame and returns PCM data. GSMDATA is 33 bytes length GSM frame.
+Decodes GSM frames and returns raw PCM data. GSMDATA is a pair of 32 and
+33 bytes length GSM frames. See gsm(3).
 
-Return value is 320 bytes length portion of 16-bit mono PCM data.
+Return value is 640 bytes length portion of 16-bit mono PCM data.
 
 =back
 
